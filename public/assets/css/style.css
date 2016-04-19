@@ -1,0 +1,832 @@
+
+@import url(https://fonts.googleapis.com/css?family=Raleway:500,300,400,600,700);
+body{
+	font-family: 'Raleway', sans-serif;
+}
+body{
+	background-color: rgba(130, 230, 182, 0.1);
+}
+/************************* START HOVER IMAGE PROFILS METIER...********************/
+html {height: 100%}
+body {min-height: 100%; position:relative; padding-bottom: 200px;}
+footer {position: absolute; bottom: 0; width: 100%;}
+main {padding-bottom: 5em}
+.contain-img:hover .hov-zoom {
+	-webkit-transform:scale(1.3);
+	transform:scale(1.3);
+}
+.contain-img .hov-zoom{
+	-webkit-transition: all 0.7s ease;
+	transition: all 0.7s ease;
+}
+.contain-img{
+	overflow:hidden;
+	height: 15em;
+	position: relative;
+}
+.link-metier {
+	display: block;
+	height: 100%;
+	width: 100%;
+  position:absolute;
+  top:0;
+  left:0;
+}
+.contain-img:hover .text-box {
+	opacity:0.5;
+}
+.text-box h2{
+	padding-top: 3em;
+	font-size: 1.5em;
+}
+.text-box {
+	position: absolute;
+	text-align: center;
+	height: 100%;
+	width: 100%;
+  top:0;
+  left:0;
+  opacity:0;
+  border-radius:5px;
+  background-color: rgba(148, 228, 180, 0.67);
+  -webkit-box-shadow: 0px 0px 15px 2px rgba(255,255,255,.75);
+  box-shadow: 0px 0px 15px 2px rgba(255,255,255,.75);
+  -webkit-transition: all 0.7s ease;
+  transition: all 0.7s ease;
+}
+
+
+/*************************END HOVER IMAGE PROFILS METIER...********************/
+#marge-titre{
+	margin-top: 3%;
+	margin-bottom: 2%;
+	padding: 0.25em 0;
+}
+#alias{
+	width: 48.5%;
+}
+#alias-m{
+	margin-left: 26%;
+}
+.louil{
+	height: 400px !important;
+}
+.slida{
+	height: 100%;
+}
+#presentation{
+	font-size: 1.5em;
+}
+.paginations.paginprofil, .paginations.paginmet,.paginations.paginallprofiles, .paginations.pagincomms{
+	padding: 10px 20px;
+}
+li.btn{
+	padding:0;
+	margin: 0 2px;
+}
+li.btn.active{
+	padding:0;
+	margin: 0 2px;
+}
+ul.pagination{
+	padding: 15px 0 30px 0;
+}
+.collapsible-header{
+	margin: 0 !important;
+}
+.collapsible li.active{
+	background-color: white !important;
+}
+.container .row{
+	margin: 0 0 1em 0;
+}
+#search{
+	margin-top: 15px;
+}
+#circleprofil{
+	max-height: 40px;
+	max-width: 40px;
+}
+nav i{
+	color:white;
+	height: auto !important;
+}
+#profil{
+	height: 600px;
+	padding-top: 50px;
+}
+#bandeau{
+	margin-top: 50px;
+}
+/*---SLIDER---*/
+#profilslide.indicators{
+	z-index: 100;
+	padding: 15px 0;
+
+}
+.indicator-item{
+	background-color: transparent !important;
+
+}
+.indicator-item.active{
+	background-color: transparent !important;
+
+}
+#profilslide.slider, #profilslide .slides{
+	height: 800px !important;
+}
+/*--INDEX--*/
+
+#mainphoto{
+	background-image: url('../img/philo.jpg');
+	width: 100%;
+	height: 900px;
+	background-size: cover;
+}
+#mainphoto2{
+	background-image: url('../img/philo_2.jpeg');
+	width: 100%;
+	height: 900px;
+	background-size: cover;
+}
+#mainphoto3{
+	background-image: url('../img/philo_3.jpg');
+	width: 100%;
+	height: 900px;
+	background-size: cover;
+}
+#mainphoto p,#mainphoto2 p,#mainphoto3 p{
+	margin: 0 ;
+	font-size: 2em;
+}
+#mainphoto .row,#mainphoto2 .row,#mainphoto3 .row {
+	padding-top: 300px;
+}
+.carousel-item{
+	width: 500px !important;
+}
+.carousel-item img{
+	object-fit: cover;
+	height: 500px;
+}
+.carousel{
+	height: 900px;
+}
+.carousel h2{
+	margin: 0;
+}
+/* LOGO PHILOMATIQUE sur BIG IMAGE */
+
+#resp-logo{
+	width: 60%;
+	margin-right: 20%;
+	margin-left: 20%;
+}
+
+/* ################################## START : PROPRIETES GLOBALES################################## */
+
+/*---Header---*/
+nav div a img {
+	height: 40px;
+	margin-top: 12px;
+}
+nav {
+	height: 64px !important;
+    color: #fff;
+    background-color: #128b82;
+}
+/*---FOOTER---*/
+footer div{
+	height: 250px;
+}
+footer div h5 {
+	width: 100%
+}
+footer .row{
+	margin: 0;
+}
+.divfooter{
+	padding-top: 70px !important;
+}
+.fa-3x{
+	margin: 0 10px;
+	color: white;
+}
+/***************** start : RESPONSIVE SUR BIG IMAGE ***************/
+/***/
+/***/	@media screen and (max-width: 900px) {
+/***/		 #mainphoto3{
+/***/		   height: 765px;
+/***/		 }
+/***/	}
+/***/	@media screen and (max-width: 550px) {
+/***/		#mainphoto3{
+/***/		   height: 510px;
+/***/		 }
+/***/		#mainphoto3 .row{
+/***/		   padding: 200px 13px 0;
+/***/	  }
+/***/	}
+/***/
+/***************** end : RESPONSIVE SUR BIG IMAGE ***************/
+
+/***************** start : RESPONSIVE FOOTER ***************/
+/***/
+/***/	@media screen and (max-width: 700px) {
+/***/		 footer div{
+/***/		   height: 150px;
+/***/		 }
+			.divfooter{
+				padding-top: 50px !important;
+			}
+			.fa-3x{
+				margin: 0 5px;
+			}
+/***/	}
+/***/	@media screen and (max-width: 450px) {
+			footer div{
+/***/		   height: 125px;
+/***/		 }
+
+/***/		.divfooter{
+    			padding-top: 35px !important;
+			}
+/***/		.fa-3x{
+				font-size: 2.5em !important;
+				margin: 0;
+			}
+/***/	}
+/***/
+/***************** end : RESPONSIVE FOOTER ***************/
+
+/***************** start : RESPONSIVE NAV HEADER ***************/
+
+		@media screen and (max-width: 475px){
+			#nav-resp{
+				background-color: #795548;
+				padding-right: 5px;
+			}
+		}
+
+
+/***************** stop : RESPONSIVE NAV HEADER ***************/
+
+/* START : ENTETE pages cgu, commentaires et galleryproject */
+
+	#banner-project span{
+		background-color: #128b82;
+		padding: 15px;
+		color: transparent;
+	}
+	#banner-project {
+		margin-top: 1%;
+	}
+
+
+/* END : ENTETE pages cgu, commentaires et galleryproject */
+
+/* ################################## END : PROPRIETES GLOBALES################################## */
+
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * PART : START : CONNECT/DECONNECT/REINIPASS*/
+
+
+.margetop{
+	margin-top:50px;
+}
+.margetop div:first-child{
+	box-shadow: none !important;
+}
+.box p{
+	padding-bottom: 13px;
+}
+.box h3{ /* retrait de quelques rem du margin bottom pour équilibrer contenu box */
+	margin: 1.46rem 0 0.8rem 0;
+}
+.shadow-effect{
+	position: relative !important;
+}
+.shadow-effect:before, .shadow-effect:after {
+    z-index: -1 !important;
+    position: absolute !important;
+    content: "" !important;
+    bottom: 28px !important;
+    left: 10px !important;
+    width: 50% !important;
+    top: 44% !important;
+    max-width: 300px !important;
+    background: #777 !important;
+    -webkit-box-shadow: 0px 38px 35px #777 !important;
+    -moz-box-shadow: 0 35px 20px #777 !important;
+    box-shadow: 0 35px 20px #777 !important;
+    -webkit-transform: rotate(-8deg) !important;
+    -moz-transform: rotate(-5deg) !important;
+    -o-transform: rotate(-5deg) !important;
+    -ms-transform: rotate(-5deg) !important;
+    transform: rotate(-5deg) !important;
+}
+
+.shadow-effect:after{
+	-webkit-transform: rotate(8deg) !important;
+    -moz-transform: rotate(8deg) !important;
+    -o-transform: rotate(8deg) !important;
+    -ms-transform: rotate(8deg) !important;
+    transform: rotate(5deg) !important;
+    right: 10px !important;
+    left: auto !important;
+}
+	/* border-radius: 2px; */
+
+.margetop .deco-btn,.deco-btn2{
+	border: none;
+    border-radius: 2px;
+    display: inline-block;
+    /* height: 36px; */
+    line-height: 0px;
+    outline: 0;
+    padding: 0.5rem 1rem;
+    vertical-align: middle;
+    -webkit-tap-highlight-color: transparent;
+}
+.margetop .deco-btn2{
+    height: 0px;
+    padding: 1rem;
+    margin-top: 16px;
+
+}
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * PART : END : CONNECT/DECONNECT/REINIPASS*/
+
+							      		/* ######## */
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * PART : START METIERS ET SOUS CAT METIERS*/
+
+#main_photo{ /* div qui contient ma big img */
+	position: relative;
+	height: 25em;
+}
+#allworks article img{
+	width: 100%;
+	height: 15em;
+}
+#allworks .photo-work{
+	object-fit: cover;
+	height: 300px;
+}
+#allworks p{
+	height:15em;
+  text-align: justify;
+	margin: 3%;
+}
+#allworks h6{
+	padding: 5% 0 5% 0;
+	text-align: justify;
+	margin: 0;
+}
+#allworks article{
+	margin-bottom: 3%;
+}
+#allworks h1{
+	background-color: #128B82;
+    padding: 1%;
+    color: #fff;
+}
+#allworks article h6{
+	font-size: 1.5em;
+	text-align: center;
+}
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  PART : END METIERS ET SOUS CAT METIERS*/
+
+										/* ######## */
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * PART : START RESPONSIVE METIERS ET SOUS CAT METIERS*/
+
+			@media screen and (max-width: 900px){
+				#allworks img{
+					width: 25em;
+				}
+			}
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  PART : END RESPONSIVE METIERS ET SOUS CAT METIERS*/
+
+										/* ######## */
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *PART : START GALLERY PROJECTS*/
+
+/*--------- start : TYPO (texts) gallery projects---------*/
+
+#presentation h5{
+	padding: 1%;
+    background-color: #128B82;
+    display: inline-block;
+    color: #fff;
+    /* font-size: 1.2em; */
+}
+#presentation h4{
+	color: #128B82;
+	text-transform: capitalize;
+}
+
+#gallery-title h6{
+	display: inline-block;
+	text-transform: capitalize;
+	font-weight: 700;
+}
+/*--------- end :TYPO (texts) gallery projects---------*/
+
+#presentation img{
+	width: 100%;
+	object-fit: cover;
+	height: 300px;
+}
+#presentation div:first-child{
+	padding:0 !important;
+}
+
+#presentation p{
+	padding: 3%;
+	background-color: rgba(0,0,0,.05);
+    border-bottom: 1px solid rgba(0,0,0,.1);
+    font-size: 0.7em;
+}
+#presentation div:nth-child(2){
+	padding: 0 1rem;
+	height: 100% !important;
+}
+#presentation{
+	margin-top: 4em;
+	margin-bottom: 4em;
+  padding: 10px 0;
+}
+#titre-index p{
+	margin-top: 4em;
+	margin-bottom: 4em;
+  padding: 20px;
+	font-size: 1.4em;
+	text-align: justify;
+
+}
+.patch-rightside{
+	background-color: #128B82;
+	padding: 20px 2px !important;
+	color: transparent;
+}
+.patch-leftside{
+	background-color: #128B82;
+	padding: 20px 2px !important;
+	color: transparent;
+}
+.patch-centered{
+	padding: 20px 2px !important;
+	color: #128B82;
+	/* background-color: #e9f2f2; */
+	background-image: url("http://www.transparenttextures.com/patterns/grid-noise.png");
+}
+
+#cards-folio{
+	position: relative;
+}
+#cards-global-content{
+	position: absolute;
+	left: 0px;
+	top: 0px;
+}
+
+#button-contact{
+	margin-bottom: 5%;
+}
+
+#cards-folio div.card-image div p{
+    position: absolute;
+    z-index: 3;
+    bottom: 0;
+    text-align: justify;
+    padding: 3% 5%;
+    line-height: 1.30em;
+    font-size: 0.75em;
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.3);
+    margin: 0 auto;
+    width: 100%;
+
+}
+#cards-folio div.card-image div{
+    position: relative;
+}
+#cards-folio img{
+	object-fit: cover;
+	height: 270px;
+}
+#cards-folio .card-image p{
+	object-fit: cover;
+	height: 60px;
+	max-width: 100%;
+}
+#cards-folio .card-title{
+    font-size: 12px;
+    font-weight: 300;
+    font-style: italic;
+}
+#card-folio .area{
+	margin:0 auto;
+}
+.card .card-content{
+	padding: 9px 9px 0 !important;
+}
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * PART : END GALLERY PROJECTS*/
+
+									/* ######## */
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * PART : START PROJECTS PAGE*/
+#banner-project span{
+	background-color: #128b82;
+	padding: 15px;
+	color: transparent;
+}
+.cote-titre{
+
+}
+
+/* #titleentete{
+	background-color: #e0f2f1;
+} */
+.nw-titleentete{
+	    margin-top: 51px;
+    font-size: 25px;
+    text-transform: uppercase;
+}
+div #slideprojet{
+	padding: 0 !important;
+}
+div #slideprojet h5{
+	color:#fff !important;
+}
+
+#titleprojet{
+    padding: 0 0.5% 0 0;
+}
+
+#titleprojet h4{
+    background-color: #fff;
+    margin-top: 0 !important;
+    font-size: 1.7em;
+    text-align: center;
+    color: #128b82;
+    padding: 10px 0;
+    border: 0.001em solid #128b82;
+}
+#titleprojet p{
+	margin-bottom: 10px;
+	background-color: #e0f2f1;
+	padding: 10px;
+	object-fit: contain;
+    height: 338px;
+}
+
+#titleentete{
+	background-color: #e0f2f1;
+}
+
+#com-project h7{
+	color: #128b82;
+}
+.comments-bloc{
+	margin-top: 7%;
+}
+#com-project{
+	margin-bottom: 3%;
+	/* margin-left: 33.5%;
+	width: 50%; */
+	padding: 10px;
+}
+#com-project h7{
+	color: #128b82;
+}
+#comment-btn{
+	padding: 0;
+}
+.link-com-project{
+	margin: 3.35% 0;
+}
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * PART : END PROJECTS PAGE*/
+
+										/* ######## */
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * PART : START COMMENTAIRE PROJECTS(dans page projet)*/
+/* #image-entete {
+
+} */
+#image-entete img{
+	object-fit: contain;
+    height: 480px;
+
+}
+#image-entete h5{
+	background-color: #795548;
+	color: white;
+	margin-bottom: 5%;
+}
+#form-com label{
+	color: #128b82;
+}
+#line-postcom{
+	padding: 0;
+	margin-bottom: 25px;
+}
+#line-postcom p{
+	padding: 0;
+	margin-bottom: 25px;
+	padding-top: 5%;
+	padding-left: 1%;
+	color: darkgrey;
+	font-size: 75%;
+}
+
+p.date-publi{
+	font-style: italic;
+	font-size: 0.8em;
+}
+p.error{
+	color:red;
+}
+p.valid{
+	color:green;
+}
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * PART : END COMMENTAIRE PROJECTS(dans page projet)*/
+
+										/* ######## */
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * PART : START UPDATES-PAGES*/
+
+
+/* ************ start : TYPO (texts) update ******** */
+section.update-content{
+	padding: 4% 0 0 0;
+}
+.nom-prenom{ /* nom et prenom de l'apprenant sous photo-gauche*/
+	padding: 3%;
+	background-color: #128B82;
+	display: inline-block;
+	color: #fff;
+	font-size: 1.2em;
+	width: 100%;
+	margin: 0 auto;
+}
+#entete h6:nth-child(1){/*Intitulé GESTION DES INFOS  */
+	padding: 5%;
+	background-color: #128B82;
+	display: inline-block;
+	color: #fff;
+	font-size: 1.2em;
+	width: 100%;
+	margin: 0;
+}
+/* ************ end :TYPO (texts) update ************ */
+
+#entete img{
+	width: 100%;
+}
+
+/******* ZONE'#bouton-edit' : les boutons sur la gauche de la page d'update/
+ * permettrons d'accéder aux champs à modifier selon la catégorie
+ * (ex: profil ou projets) *******/
+
+#bouton-edit{
+    height: 4.5em;
+    padding: 1em 0 0 0 ;
+    width: 100%;
+    border-bottom: 0.05em solid #128B82;
+}
+
+#bloc-projet-edit{
+	padding: 0 0.75rem 0 0;
+}
+
+#projet-edit {
+    height: 3.5em;
+   /*  padding: 1em 0 0 0; */
+    width: 100%;
+    font-size: x-small;
+}
+#bloc-projet-edit a{
+	background-color: #0091EA;
+	color: #fff;
+	border-bottom: 0.005px solid #fff;
+}
+
+/****** ZONE FORMULAIRE POUR GERER LES MODIFICATIONS ******/
+
+#form-update{
+    padding: 0;
+}
+#form-update .champsText {
+    margin: 1em;
+}
+.champsText #textarea1{
+	width: 94.5%;
+}
+h6.nameProject{
+    background-color: #01579B;
+    padding: 1em 0;
+    margin: 0 0 0.4rem 0;
+    color:#fff;
+
+}
+/**** ZONE DOCUMENT CHARGE EN DESSOUS ZONE FORMULAIRE ****/
+.titre-doc-charge h6{
+	padding-top: 1.75em;
+    font-size: 1.2em;
+}
+.titre-doc-charge {
+	margin-right: 1em;
+}
+
+#form-update button{
+	margin-top: 10%;
+}
+.add{
+	font-size: 0.8em;
+}
+.btn-add{
+	padding:1%;
+}
+/******Padding du contenu******/
+.gestionInfos{
+	margin-bottom: 16%;
+}
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * PART : END UPDATES-PAGES*/
+
+										/* ######## */
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * PART : START CGU page*/
+
+
+#Objet-des-CGU{
+	margin-left: 15%;
+	margin-right: 15%;
+}
+
+#Objet-des-CGU h4{
+	margin-left: 15%;
+	text-align: center;
+	color: white;
+	font-size: 1em;
+}
+#Objet-des-CGU p{
+	text-align: justify;
+	padding: 7px;
+}
+#cont-des-CGU{
+
+}
+#couleur-font p{
+	color: white;
+}
+
+/***************** start :RESPONSIVE CGU *************/
+
+		@media screen and (max-width: 990px) {
+			#Objet-des-CGU{
+				width: 60%;
+				margin-left: 20% !important;
+			}
+
+			#banner-project{
+				width: 100%;
+				margin: 0 !important;
+				}
+
+			#titre-CGU{
+				margin: 0 !important
+				}
+			}
+
+		@media screen and (max-width: 250px) {
+
+			#banner-project{
+				display: none;
+				}
+			}
+/***************** stop :RESPONSIVE CONDITION **************/
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * PART : END CGU page*/
+#marquesite h5{
+			color: white;
+			margin-left: 100%;
+			margin-top: 50%;
+}
+iframe{
+	padding-top: 0 !important;
+	position: absolute;
+	margin-left:16%;
+	margin-top: 2%;
+}
