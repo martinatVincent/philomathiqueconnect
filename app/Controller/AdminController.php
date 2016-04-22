@@ -3,10 +3,10 @@
 namespace Controller;
 
 use \W\Controller\Controller;
-use \Manager\BlogManager;
-use \W\Security\AuthentificationManager;
-use \Manager\FixUserManager as UserManager;
-use Manager\MetierManager;
+use \Model\BlogModel;
+use \W\Security\AuthentificationModel;
+use \Model\FixUserModel as UserModel;
+use Model\MetierModel;
 use \PHPMailer;
 use \config;
 
@@ -14,9 +14,9 @@ class AdminController extends Controller
 {
 	public function insertProfil(){
 		$this->allowTo(['Admin']);
-		$login = new AuthentificationManager();
-		$userManager = new UserManager;
-		$metiers = new MetierManager();
+		$login = new AuthentificationModel();
+		$userModel = new UserModel;
+		$metiers = new MetierModel();
 		$toutmetiers = $metiers->findAll();
 		$errors = array();
 		$params = array(); // Les paramètres qu'on envoi a la vue, on utilisera les clés du tableau précédé par un $ pour les utiliser dans la vue
@@ -41,7 +41,7 @@ class AdminController extends Controller
 			// il n'y a pas d'erreurs,  inserer l'utilisateur a bien rentré en bdd :
 			if(count($errors) == 0){
 
-				$userManager->insert([
+				$userModel->insert([
 					'nom' 		=> $_POST['nom'],
 					'prenom' 	=> $_POST['prenom'],
 					'email' 	=> $_POST['email'],
@@ -61,8 +61,8 @@ class AdminController extends Controller
 	}
 	public function insertSection(){
 		$this->allowTo(['Admin']);
-		$login = new AuthentificationManager();
-		$MetierManager = new MetierManager;
+		$login = new AuthentificationModel();
+		$MetierModel = new MetierModel;
 		$errors = array();
 		$params = array(); // Les paramètres qu'on envoi a la vue, on utilisera les clés du tableau précédé par un $ pour les utiliser dans la vue
 		// Faire vérification des champs ICI
@@ -87,7 +87,7 @@ class AdminController extends Controller
 
 			// il n'y a pas d'erreurs,  inserer la section a bien rentré en bdd :
 			if(count($errors) == 0){
-				$MetierManager->insert([
+				$MetierModel->insert([
 					'section' 	  	=> $_POST['section'],
 					'alias' 		=> $_POST['alias'],
 					'description' 	=> $_POST['description'],
@@ -107,8 +107,8 @@ class AdminController extends Controller
 	}
 	public function connect()
 	{
-		$userManager = new UserManager();
-		$login = new AuthentificationManager();
+		$userModel = new UserModel();
+		$login = new AuthentificationModel();
 		$errors = array();
 		$params = array(); // Les paramètres qu'on envoi a la vue, on utilisera les clés du tableau précédé par un $ pour les utiliser dans la vue
 		if(!empty($_POST)){
@@ -128,7 +128,7 @@ class AdminController extends Controller
 				$userId = $login->isValidLoginInfo($_POST['login'], $_POST['pass']);
 				if(is_int($userId) && $userId != 0){
 
-					$userDatas = $userManager->find($userId);
+					$userDatas = $userModel->find($userId);
 					// alors démarrer la session (logUserIn)
 					$login->logUserIn($userDatas);
 					// et rediriger vers l'accueil
@@ -145,7 +145,7 @@ class AdminController extends Controller
 	}
 	public function deconnect()
 	{
-		$login = new AuthentificationManager();
+		$login = new AuthentificationModel();
 
 		$params = array();
 		if (empty($_POST)){
@@ -162,8 +162,8 @@ class AdminController extends Controller
 	}
 	public function reiniPass()
 	{
-		$login = new AuthentificationManager();
-		$userManager = new UserManager;
+		$login = new AuthentificationModel();
+		$userModel = new UserModel;
 		$errors = array();
 		$mail = new PHPMailer;
 		$params = array(); // Les paramètres qu'on envoi a la vue, on utilisera les clés du tableau précédé par un $ pour les utiliser dans la vue
@@ -178,10 +178,10 @@ class AdminController extends Controller
 			// si pas d'erreurs,
 			if(count($errors) == 0){
 				// on va vérifier qu'il existe un utilisateur avec cet email dans la base
-				if($idUser = $userManager->emailExists($_POST['email'])){
+				if($idUser = $userModel->emailExists($_POST['email'])){
 					$token = password_hash($_POST['pass'],PASSWORD_DEFAULT);// on génère un 'token', identifiant unique
-					$idUser = $userManager->getUserByUsernameOrEmail($_POST['email'])['id']; //chercher id
-					$userManager->update([
+					$idUser = $userModel->getUserByUsernameOrEmail($_POST['email'])['id']; //chercher id
+					$userModel->update([
 						"confirmedToken" 		=> $token,
 						"dateConfirmedToken" 	=>date('Y-m-d',strtotime('+1 week'))
 						], $idUser);	// on stocke le token dans la bdd pour cet utilisateur
@@ -249,8 +249,8 @@ class AdminController extends Controller
 		$this->show('admin/reiniPass', $params);
 }
 	public function reiniPassTok(){
-		$login = new AuthentificationManager();
-		$userManager = new UserManager();
+		$login = new AuthentificationModel();
+		$userModel = new UserModel();
 		$errors = array();
 		$params = array(); // Les paramètres qu'on envoi a la vue, on utilisera les clés du tableau précédé par un $ pour les utiliser dans la vue
 		//verifier et recuperer le token et email puis :
@@ -270,10 +270,10 @@ class AdminController extends Controller
 					// mettre à jour le mot de passe
 					if(count($errors) == 0){
 						// on va vérifier qu'il existe un utilisateur avec cet email dans la base
-				        if($idUser = $userManager->emailExists($_GET['email'])){
+				        if($idUser = $userModel->emailExists($_GET['email'])){
 
-							$idUser = $userManager->getUserByUsernameOrEmail($_GET['email'])['id']; //chercher id
-							$userManager->update([
+							$idUser = $userModel->getUserByUsernameOrEmail($_GET['email'])['id']; //chercher id
+							$userModel->update([
 								"password" => password_hash($_POST['pass'],PASSWORD_DEFAULT)], $idUser);	// Modifie une ligne en fonction d'un identifiant et on stocke le nouveau mot de passe dans la bdd pour cet utilisateur
 						}
 						else{

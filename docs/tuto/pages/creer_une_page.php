@@ -13,21 +13,21 @@
 <p>Voici schématiquement comment se déroule une requête (en omettant quelques éléments) :</p>
 <img src="img/parcours-requete-simple.png" alt="Parcours d'une requête" />
 
-<p>Pour créer une page simple avec W, vous avez besoin donc besoin de définir vous-mêmes 3 éléments : </p>
+<p>Pour créer une page simple avec W, vous avez besoin donc besoin de définir vous-mêmes 3 éléments :</p>
 
 <ul>
-<li>Une route</li>
-<li>Une méthode de contrôleur</li>
-<li>Un template</li>
+	<li>Une route</li>
+	<li>Une méthode de contrôleur</li>
+	<li>Un template</li>
 </ul>
 
-<h3><a id="user-content-définir-une-route" class="anchor" href="#définir-une-route" aria-hidden="true"><span class="octicon octicon-link"></span></a>Définir une route</h3>
+<h3><a id="user-content-definir-une-route" class="anchor" href="#definir-une-route" aria-hidden="true"></a>Définir une route</h3>
 
 <p>Les routes permettent de faire le lien entre l'URL et une méthode spécifique de vos contrôleurs.</p>
 
-<p>W utilise <a href="http://altorouter.com/" title="AltoRouter">AltoRouter</a>, un composant de routage. N'hésitez pas à en consulter <a href="http://altorouter.com/usage/install.html" title="Documentation d'AltoRouter">la documentation</a>. </p>
+<p>W utilise <a href="http://altorouter.com/" title="AltoRouter">AltoRouter</a>, un composant de routage. N'hésitez pas à en consulter <a href="http://altorouter.com/usage/install.html" title="Documentation d'AltoRouter">la documentation</a>.</p>
 
-<p>Les routes sont définie dans le fichier <span class="code">app/routes.php</span>, dans le tableau <span class="code">$w_routes</span>.</p>
+<p>Les routes sont définies dans le fichier <span class="code">app/routes.php</span>, dans le tableau <span class="code">$w_routes</span>.</p>
 
 <pre><code>&lt;?php
 
@@ -38,10 +38,10 @@ $w_routes = array(
 
 <p>Chaque route est elle-même un tableau, contenant les données suivantes : </p>
 <ol>
-<li>La ou les méthodes HTTP</li>
-<li>Le pattern d'URL</li>
-<li>Le contrôleur et la méthode à appeler</li>
-<li>Le nom de la route</li>
+	<li>La ou les méthodes HTTP</li>
+	<li>Le pattern d'URL</li>
+	<li>Le contrôleur et la méthode à appeler</li>
+	<li>Le nom de la route</li>
 </ol>
 
 <p>Ainsi, si un pattern d'URL (2) est reconnu et que la méthode HTTP (1) est la bonne, la méthode du contrôleur (3) sera automatiquement exécutée. Le nom de la route (4) est utile pour générer des URL pointant vers cette route.</p>
@@ -55,9 +55,9 @@ $w_routes = array(
 <p>Les contrôleurs doivent suivre une certaine convention : </p>
 
 <ol>
-<li>Ils se trouvent dans le dossier <span class="code">app/Controller/</span></li>
-<li>Le nom de la classe est suffixé par <span class="code">Controller</span></li>
-<li>Ils doivent normalement hériter de <span class="code">\W\Controller\Controller</span></li>
+	<li>Ils se trouvent dans le dossier <span class="code">app/Controller/</span></li>
+	<li>Le nom de la classe est suffixé par <span class="code">Controller</span></li>
+	<li>Ils doivent normalement hériter de <span class="code">\W\Controller\Controller</span></li>
 </ol>
 
 <pre><code>&lt;?php   
@@ -79,15 +79,15 @@ class DefaultController extends \W\Controller\Controller
 <p>Les méthodes des contrôleur devraient, après avoir effectuer un éventuel traitement, soit effectuer une redirection, soit afficher un template avec la méthode <span class="code">show()</span>. Cette méthode accepte deux paramètres : </p>
 
 <ol>
-<li>Le chemin et le nom du template, sans l'extension</li>
-<li>Un tableau de variable à rendre disponible au template</li>
+	<li>Le chemin et le nom du template, sans l'extension</li>
+	<li>Un tableau de variable à rendre disponible au template</li>
 </ol>
 
 <h3>Créer un template</h3>
 
 <p>W utilise <a href="http://platesphp.com/" title="Plates">Plates</a>, un moteur de template en PHP, inspiré de <a href="http://twig.sensiolabs.org/" title="Twig">Twig</a>.</p>
 
-<p>Pour créer un nouveau template, il suffit créer un fichier php dans le dossier <span class="code">app/templates/</span>. Par convention, on place toutefois ces fichiers dans un sous-dossier portant le nom du contrôleur (ie. dossier <span class="code">templates/admin/</span> pour les templates du contrôleur <span class="code">AdminController</span>).  </p>
+<p>Pour créer un nouveau template, il suffit créer un fichier php dans le dossier <span class="code">app/templates/</span>. Par convention, on place toutefois ces fichiers dans un sous-dossier portant le nom du contrôleur (ie. dossier <span class="code">templates/admin/</span> pour les templates du contrôleur <span class="code">AdminController</span>).</p>
 
 <pre><code>&lt;?php 
 //hérite du fichier layout.php à la racine de app/templates/
@@ -102,7 +102,6 @@ $this-&gt;start('main_content'); ?&gt;
 &lt;?php 
 //fin du bloc
 $this-&gt;stop('main_content'); ?&gt;
-
 </code></pre>
 
 <p>Il est habituel de n'avoir que quelques layouts (voir un seul) pour vos applications, et que vos différentes pages "héritent" de celui-ci. Voir <a href="http://platesphp.com/templates/inheritance/" title="L'héritage dans Plates">la documentation de Plates à ce sujet</a>.</p>

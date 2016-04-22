@@ -1,12 +1,28 @@
 {
-    "name": "wf3/w",
-    "description": "Framework pédagogique de la Web Force 3",
+    "name": "webforce3/w",
+    "description": "Framework pédagogique de la WebForce3",
+	"version": "1.0.1",
     "minimum-stability": "dev",
     "license": "MIT",
     "prefer-stable": true,
+	"authors": [
+        {
+            "name": "Axel Wargnier",
+            "email": "axel@axessweb.fr",
+            "role": "Developer"
+        },
+        {
+            "name": "Guillaume Sylvestre",
+            "email": "gsylvestre@gmail.com",
+            "role": "Initial Developer"
+        }
+    ],
+    "support": {
+        "doc": "http://axessweb.github.io/W/"
+    },
     "require": {
-        "altorouter/altorouter": "^1.0",
-        "league/plates": "^3.0",
+        "altorouter/altorouter": "^1.1",
+        "league/plates": "^3.1",
         "ircmaxell/random-lib": "^1.1",
         "ircmaxell/password-compat": "^1.0",
         "league/url": "^3.3",
@@ -21,7 +37,7 @@
     "repositories": [
         {
             "type": "vcs",
-            "url": "https://github.com/gsylvestre/W"
+            "url": "https://github.com/AxessWeb/W"
         }
     ]
 }

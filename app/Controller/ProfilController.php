@@ -5,13 +5,13 @@ namespace Controller;
 use \PHPMailer;
 use \config;
 use \W\Controller\Controller;
-use Manager\MetierManager;
-use Manager\DeleteAccountManager;
-use Manager\FixUserManager;
-use \W\Security\AuthentificationManager;
-use Manager\ProjetManager;
-use Manager\CommentaireManager;
-use Manager\PhotoManager;
+use Model\MetierModel;
+use Model\DeleteAccountModel;
+use \W\Model\Model;
+use \W\Security\AuthentificationModel;
+use Model\ProjetModel;
+use Model\CommentaireModel;
+use Model\PhotoModel;
 
 class ProfilController extends Controller
 {
@@ -25,13 +25,13 @@ class ProfilController extends Controller
     public function profilUser($id)
     {
 
-      $userManager = new FixUserManager();
+      $userModel = new userModel();
       $params = [
-        'profil' => $userManager->find($id),
-        'section' => $userManager->getUserMetier($id),
+        'profil' => $usermodel->find($id),
+        'section' => $usermodel->getUserMetier($id),
         // récupérer la liste de projets de cet utilisateur
         // pour les afficher dans la vue profilUser
-        'projets' => $userManager->getUserProjects($id)
+        'projets' => $usermodel->getUserProjects($id)
       ];
       $this->show('profil/profilUser', $params);
 
@@ -40,7 +40,7 @@ class ProfilController extends Controller
     //Voir la liste des profils  selon un metier
     public function profilsAll($section)
     {
-      $metier = new MetierManager;
+      $metier = new MetierModel;
       /*Tableau es profils par section*/
       $num = 6;
       $page = 1;
@@ -60,7 +60,7 @@ class ProfilController extends Controller
     }
     public function ajaxprofils($section){
 
-      $profilsdb = new MetierManager;
+      $profilsdb = new MetierModel;
       $num = 6;
       $page = $_GET['page'];
       $start = ($page-1) * $num;
@@ -74,7 +74,7 @@ class ProfilController extends Controller
       $num = 6;
       $page = 1;
       $start = ($page-1) * $num;
-      $allprofiles = new FixUserManager();
+      $allprofiles = new usermodel();
       $allcount = $allprofiles->findAll();
       $all = $allprofiles->findAll('nom' , 'ASC', $num, $start);
       $countusers = count($allcount);
@@ -86,7 +86,7 @@ class ProfilController extends Controller
     }
     public function ajaxpaginallprofiles(){
 
-      $allsusers = new FixUserManager();
+      $allsusers = new usermodel();
       $num = 6;
       $page = $_GET['page'];
       $start = ($page-1) * $num;
@@ -102,8 +102,8 @@ class ProfilController extends Controller
     //création de commentaire
     public function projectsPage($id){
 
-      $userManager = new FixUserManager();
-      $commentaireManager = new CommentaireManager();// methode manager qui va verifier mon tableau
+      $usermodel = new Usermodel();
+      $commentaireModel = new CommentaireModel();// methode Model qui va verifier mon tableau
       $post = array();
       $err = array();
       $formError = false;
@@ -139,29 +139,29 @@ class ProfilController extends Controller
             $formValid = true;
             $post['idprojet'] = $id; // Je récupère l'$id en paramètre du controleur projectsPage
             $post['iduserspost'] = $user['id'];// Je récupère l'$id de mon utilisateur par la fonction user utilisé dans mon controller de base
-            $commentaireManager->insert($post);// s'il n'y a pas d'erreur je créée un tableau
+            $commentaireModel->insert($post);// s'il n'y a pas d'erreur je créée un tableau
           }
         }
       }
 
-      $projetManager = new ProjetManager(); // methode manager qui va chercher le projet d'id $id
+      $projetModel = new ProjetModel(); // methode Model qui va chercher le projet d'id $id
       $num = 6;
       $page = 1;
       $start = ($page-1) * $num;
       $params = [
-        'projets' => $projetManager->find($id),
+        'projets' => $projetModel->find($id),
         // récupérer la liste de photos de ce projet
         // pour les afficher dans la vue projectsPage
-        'photos'=> $projetManager->getProjectPhotos($id),
+        'photos'=> $projetModel->getProjectPhotos($id),
         'erreurs'=> implode('<br>', $err),
         'formValid' => $formValid,
         'formError' => $formError,
         ];
-        $allcomms = $commentaireManager->getProjectCommentaires($id, 'date', $num, $start);
+        $allcomms = $commentaireModel->getProjectCommentaires($id, 'date', $num, $start);
         $params['commentaires'] = $allcomms;
 
 
-      $commz = count($commentaireManager->getProjectCommentaires($id));
+      $commz = count($commentaireModel->getProjectCommentaires($id));
       $totalpages = ceil($commz/$num);
       $params['totalpages'] = $totalpages;
 
@@ -170,7 +170,7 @@ class ProfilController extends Controller
 
     public function ajaxprojectspagepagin($id){
 
-        $commsdb = new CommentaireManager;
+        $commsdb = new CommentaireModel;
         $num = 6;
         $page = $_GET['page'];
         $start = ($page-1) * $num;
@@ -182,7 +182,7 @@ class ProfilController extends Controller
     public function contact($id)
     {
       $errors = array();
-      $user = new FixUserManager;
+      $user = new usermodel;
       $app = getApp();
       $getuser = $user->find($id);
       $mail = new PHPMailer;
@@ -249,8 +249,8 @@ class ProfilController extends Controller
         $dirUpload = 'photo';
         $mimeTypeAllowed = array('image/jpg', 'image/jpeg', 'image/png');
         $validForm =false;
-        $projectManager = new ProjetManager;
-        $photoManager = new PhotoManager;
+        $projectModel = new ProjetModel;
+        $photoModel = new PhotoModel;
 
 
         if(empty($_POST['project_title'])){
@@ -274,7 +274,7 @@ class ProfilController extends Controller
         }
 
         if(count($errors) == 0){
-          $projet = $projectManager->insert([
+          $projet = $projectModel->insert([
             'project_title'   => $_POST['project_title'],
             'description'     => $_POST['description'],
             'date_publish'    => 'NOW()',
@@ -290,7 +290,7 @@ class ProfilController extends Controller
           $namePhoto = $infosUser['id'].$_FILES['photo']['name'];
           //Pour que le nom soit unique et eviter les probleme de nom de fichier on l'incrémente de l'id appartenant à user
           //supprimer ou remplacer le fichier
-          $photo=$photoManager->insert([
+          $photo=$photoModel->insert([
             'id_projet' => $projet['id'],
             'photo'     => $namePhoto,
             'caption'   => $_POST['caption'],
@@ -312,11 +312,11 @@ class ProfilController extends Controller
     public function updatesProfil()
     {
         $this->allowTo(['user','Admin']);
-        $login = new AuthentificationManager();
-        $userManager = new FixUserManager;
+        $login = new AuthentificationModel();
+        $usermodel = new usermodel;
         $infosUser = $this->getUser();
-        $projectManager = new ProjetManager;
-        $photoManager = new PhotoManager;
+        $projectModel = new ProjetModel;
+        $photoModel = new PhotoModel;
         $errors = array();
         $params = array(); // Les paramètres qu'on envoi a la vue, on utilisera les clés du tableau précédé par un $ pour les utiliser dans la vue
         // Faire vérification des champs ICI
@@ -355,7 +355,7 @@ class ProfilController extends Controller
             // il n'y a pas d'erreurs,  inserer l'utilisateur a bien rentré en bdd :
             if(count($errors) == 0){
 
-              $userManager->update([
+              $usermodel->update([
                 'nom'               => $_POST['nom'],
                 'prenom'            => $_POST['prenom'],
                 'email'             => $_POST['email'],
@@ -398,7 +398,7 @@ class ProfilController extends Controller
             }
 
             if(count($errors) == 0){
-              $projet = $projectManager->insert([
+              $projet = $projectModel->insert([
                 'project_title'   => $_POST['project_title'],
                 'description'     => $_POST['description'],
                 'date_publish'    => date('Y-m-d'),
@@ -419,7 +419,7 @@ class ProfilController extends Controller
 
               //Pour que le nom soit unique et eviter les probleme de nom de fichier on l'incrémente de l'id appartenant à user
               //supprimer ou remplacer le fichier
-              $photo=$photoManager->insert([
+              $photo=$photoModel->insert([
                 'id_projet' => $projet['id'],
                 'photo'     => 'projets/'.$namePhoto,
                 'caption'   => $_POST['caption'],
@@ -436,7 +436,7 @@ class ProfilController extends Controller
           }
         }
 
-        $params['projets'] = $userManager->getUserProjects($infosUser['id']);
+        $params['projets'] = $usermodel->getUserProjects($infosUser['id']);
         $this->show('profil/updatesprofil', $params);
       }
 
@@ -444,8 +444,8 @@ class ProfilController extends Controller
     public function updatePhoto(){
 
       $this->allowTo(['user','Admin']);
-      $login = new AuthentificationManager();
-      $userManager = new FixUserManager;
+      $login = new AuthentificationModel();
+      $usermodel = new usermodel;
       $infosUser = $this->getUser();
       $mimeTypeAllowed = array('image/jpg', 'image/jpeg', 'image/png','image/gif');
       $errors =[];
@@ -481,7 +481,7 @@ class ProfilController extends Controller
           $params['picUrl'] = $_SERVER['REDIRECT_W_BASE'].'/assets/'.$data['photo'];
 
           //on met à jour la bdd
-          $userManager->update($data, $infosUser['id']);
+          $usermodel->update($data, $infosUser['id']);
           $login->refreshUser();
           $validForm =true;
         }
@@ -494,8 +494,8 @@ class ProfilController extends Controller
     public function updateProjet(){
 
       $this->allowTo(['user','Admin']);
-      $login = new AuthentificationManager();
-      $projetsManager = new FixUserManager;
+      $login = new AuthentificationModel();
+      $projetsModel = new usermodel;
       $infosUser = $this->getUser();
       $mimeTypeAllowed = array('image/jpg', 'image/jpeg', 'image/png','image/gif');
       $errors =[];
@@ -534,7 +534,7 @@ class ProfilController extends Controller
           $params['picUrl'] = $_SERVER['REDIRECT_W_BASE'].'/assets/'.$data['photo'];
 
           //on met à jour la bdd
-          $projetsManager->update($data, $infosUser['id']);
+          $projetsModel->update($data, $infosUser['id']);
           $login->refreshUser();
           $validForm =true;
         }
@@ -562,10 +562,10 @@ class ProfilController extends Controller
         }
   			if(count($errors) == 0){
 
-          $verifPass = new AuthentificationManager();
+          $verifPass = new AuthentificationModel();
           $isValid = $verifPass->isValidLoginInfo($_POST['email'], $_POST['pass']);
           if($isValid == true){
-            $delete = new DeleteAccountManager();
+            $delete = new DeleteAccountModel();
             $allinfos = $delete->deleteAll($id);
             var_dump($allinfos);
             $params['success'] = 'Votre profil à bien été supprimé !';

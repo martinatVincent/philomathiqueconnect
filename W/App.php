@@ -94,7 +94,7 @@ class App
 
 	/**
 	 * Retourne le routeur
-	 * @return  \AltoRouter Le routeur
+	 * @return \AltoRouter Le routeur
 	 */
 	public function getRouter()
 	{
@@ -108,5 +108,20 @@ class App
 	public function getBasePath()
 	{
 		return $this->basePath;
+	}
+
+	/**
+	 * Retourne le nom de la route actuelle
+	 * @return mixed Le nom de la route actuelle depuis \AltoRouter ou le false
+	 */
+	public function getCurrentRoute(){
+
+		$route = $this->getRouter()->match();
+		if($route){
+			return $route['name'];
+		}
+		else {
+			return false;
+		}
 	}
 }
