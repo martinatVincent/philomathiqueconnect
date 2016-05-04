@@ -3,13 +3,13 @@
 namespace Controller;
 
 use \W\Controller\Controller;
-use Model\MetierModel;
+use Manager\MetierManager;
 
 class MetiersController extends Controller
 {
     public function metiers(){
-
-      $metiersdb = new MetierModel;
+      
+      $metiersdb = new MetierManager;
       $num = 6;
       $page = 1;
       $start = ($page-1) * $num;
@@ -26,7 +26,7 @@ class MetiersController extends Controller
 
     public function ajaxmetiers(){
 
-      $metiersdb = new MetierModel;
+      $metiersdb = new MetierManager;
       $num = 6;
       $page = $_GET['page'];
       $start = ($page-1) * $num;

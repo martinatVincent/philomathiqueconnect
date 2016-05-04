@@ -10,7 +10,6 @@ use League\Plates\Extension\ExtensionInterface;
  */
 class PlatesExtensions implements ExtensionInterface
 {
-
 	/**
 	 * Enregistre les nouvelles fonctions dans Plates
      * @param \League\Plates\Engine $engine L'instance du moteur de template
@@ -24,7 +23,7 @@ class PlatesExtensions implements ExtensionInterface
     /**
      * Retourne l'URL relative d'un asset
      * @param string $path Le chemin vers le fichier, relatif à public/assets/
-     * @return string L'URL relative vers le fichier
+     * @return  string L'URL relative vers le fichier
      */
     public function assetUrl($path)
     {
@@ -34,10 +33,10 @@ class PlatesExtensions implements ExtensionInterface
 
     /**
      * Génère l'URL correspondant à une route nommée (copie de celle dans \W\Controller\Controller)
-     * @param string $routeName Le nom de route
-     * @param mixed  $params    Tableau de paramètres optionnel de cette route
-     * @param boolean $absolute Retourne une url absolue si true (relative si false)
-     * @return L'URL correspondant à la route
+     * @param  string $routeName Le nom de route
+     * @param  mixed  $params    Tableau de paramètres optionnel de cette route
+     * @param  boolean $absolute Retourne une url absolue si true (relative si false)
+     * @return  L'URL correspondant à la route
      */
     public function generateUrl($routeName, $params = array(), $absolute = false)
     {

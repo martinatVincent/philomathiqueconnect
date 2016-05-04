@@ -10,12 +10,7 @@ W est un framework minimaliste. Il suit les structures et les grand thèmes des 
 
   ```
   cd c:/xampp/htdocs
-  composer create-project webforce3/w nom_de_mon_projet
+  composer create-project wf3/w nom_de_mon_projet
   ```
 
 2. Naviguez vers http://localhost/nom_de_mon_projet/docs/tuto/
-
-
-####Auteurs :
-* Guillaume Sylvestre : [@gsylvestre](https://github.com/gsylvestre) (auteur original)
-* Axel Wargnier : [@axessweb](https://github.com/axessweb)

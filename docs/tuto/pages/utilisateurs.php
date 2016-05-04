@@ -9,7 +9,7 @@
 
 //authentification, autorisation
 'security_user_table' => 'users',				//nom de la table contenant les infos des utilisateurs
-'security_id_property' => 'id',					//nom de la colonne pour la clé primaire
+'security_id_property' => 'id',					//nom de la colonne pour la clef primaire
 'security_username_property' => 'username',		//nom de la colonne pour le "pseudo"
 'security_email_property' => 'email',			//nom de la colonne pour l'"email"
 'security_password_property' => 'password',		//nom de la colonne pour le "mot de passe"
@@ -20,11 +20,11 @@
 
 <p>Toutes les valeurs affichées ci-dessus sont les valeurs par défaut. Si vous avez les mêmes, vous n'avez rien à configurer. Sinon, vous devez les spécifier.</p>
 <p>Ainsi, W a besoin de connaître le nom de la table où vous stockez vos utilisateurs, et le nom de certaines colonnes importantes.</p>
-<p>La clé de configuration <span class="code">security_login_route_name</span> fait référence au <em>nom de la route</em> où vos utilisateurs se connectent (formulaire de login). W redirigera les utilisateurs non-connectés à cette page s'ils tentent d'accéder à une ressource protégée.</p>
+<p>La clef de configuration <span class="code">security_login_route_name</span> fait référence au <em>nom de la route</em> où vos utilisateurs se connectent (formulaire de login). W redirigera les utilisateurs non-connectés à cette page s'ils tentent d'accéder à une ressource protégée.</p>
 
-<h3>L'AuthentificationModel</h3>
-<p>La classe <span class="code">\W\Security\AuthentificationModel</span> met à votre disposition quelques méthodes utiles pour votre système d'authentification. Voici les plus utiles en résumé : </p>
-<pre><code>/* W\Security\AuthentificationModel.php */
+<h3>L'AuthentificationManager</h3>
+<p>La classe <span class="code">\W\Security\AuthentificationManager</span> met à votre disposition quelques méthodes utiles pour votre système d'authentification. Voici les plus utiles en résumé : </p>
+<pre><code>/* W\Security\AuthentificationManager.php */
 
 // Vérifie qu'une combinaison d'email/username et mot de passe (en clair) sont présents en bdd et valides
 // Vous devez avoir haché vos mdp avec la fonction password_hash() ou crypt() de votre côté !
@@ -33,7 +33,7 @@ public function isValidLoginInfo($usernameOrEmail, $plainPassword)
 
 // Connecte un utilisateur
 // L'argument à passer est un tableau contenant les données utilisateur
-// Les données seront stockées sous la clé 'user' dans $_SESSION
+// Les données seront stockées sous la clef 'user' dans $_SESSION
 public function logUserIn($user)
 
 // Déconnecte un utilisateur
@@ -41,9 +41,6 @@ public function logUserOut()
 
 // Utilise les données utilisateurs présentes en base pour mettre à jour les données en session
 public function refreshUser()
-
-// Créer un hash simple d'un mot de passe en utilisant l'algorithme par défaut
-public function hashPassword($plainPassword)
 </code></pre>
 
 <h3>Sécuriser une page</h3>
@@ -60,7 +57,7 @@ public function adminHome()
 
 </code></pre>
 
-<p>La méthode <span class="code">allowTo()</span> peut recevoir un seul rôle en paramètre, ou un tableau en contenant plusieurs. La méthode utilise en interne la méthode <span class="code">isGranted()</span> de l'<span class="code">\W\Security\AuthorizationModel</span>.
+<p>La méthode <span class="code">allowTo()</span> peut recevoir un seul rôle en paramètre, ou un tableau en contenant plusieurs. La méthode utilise en interne la méthode <span class="code">isGranted()</span> de l'<span class="code">\W\Security\AuthorizationManager</span>.
 
 <h3>Récupérer l'utilisateur connecté</h3>
 <p>Si vous souhaitez gérer plus en finesse l'autorisation d'accès à une page, ou simplement consulter ou manipuler les données de l'utilisateur connecté, vous avez également accès une méthode de contrôleur simple : 

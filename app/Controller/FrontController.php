@@ -5,8 +5,8 @@ namespace Controller;
 use \PHPMailer;
 use \config;
 use \W\Controller\Controller;
-use \W\Model\UsersModel;
-use Model\RechercheModel;
+use Manager\FixUserManager;
+use Manager\RechercheManager;
 class FrontController extends Controller
 {
 
@@ -15,7 +15,7 @@ class FrontController extends Controller
 	 */
 	public function index()
 	{
-		$profils = new UserModel();
+		$profils = new FixUserManager();
 		$profilselect = $profils->findAll('date_update', 'ASC', 6);
 		$params['users'] = $profilselect;
 		$this->show('front/index', $params);
@@ -29,7 +29,7 @@ class FrontController extends Controller
 		$errors = array();
 		$app = getApp();
 		$mail = new PHPMailer;
-
+		
 		if(!empty($_POST)){
 			// Faire vérification des champs ICI
 			if(empty($_POST['email'])){
@@ -99,7 +99,7 @@ class FrontController extends Controller
 
 		}
 		else{
-			$recherche = new RechercheModel();
+			$recherche = new RechercheManager();
 			if(!empty($_GET["search"])){
 				$search = strip_tags($_GET["search"]);
 				if($_GET['valeur'] == 'user'){
